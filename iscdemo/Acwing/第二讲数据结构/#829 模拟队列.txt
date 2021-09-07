@@ -1,0 +1,18 @@
+#include<iostream>
+using namespace std;
+const int N=100010;
+int m;
+int q[N],hh,tt=-1;
+int main(){
+    cin>>m;
+    while(m--){
+        string op;
+        cin>>op;
+        int x;
+        if(op=="push"){cin>>x;q[++tt]=x;}
+        if(op=="pop")hh++;
+        if(op=="empty")cout<<(hh<=tt? "NO":"YES")<<endl;
+        if(op=="query")cout<<q[hh]<<endl;
+    }
+    return 0;
+}

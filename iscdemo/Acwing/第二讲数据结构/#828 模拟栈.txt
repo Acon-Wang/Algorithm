@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+const int N=100010;
+int m;
+int skt[N],tt;
+int main(){
+    cin>>m;
+    while(m--){
+        string p;
+        int x;
+        cin>>p;
+        if(p=="push"){cin>>x;skt[++tt]=x;}
+        if(p=="pop")tt--;
+        if(p=="empty")cout<<(tt? "NO":"YES")<<endl;
+        if(p=="query")cout<<skt[tt]<<endl;
+        
+    }
+    return 0;
+}

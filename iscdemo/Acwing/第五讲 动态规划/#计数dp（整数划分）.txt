@@ -1,0 +1,18 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+const int N=1005;
+int n;
+int f[N],mod=1e9+7;
+int main(){
+    cin>>n;
+    f[0]=1;
+    for(int i=1;i<=n;i++)
+     for(int j=i;j<=n;j++)
+        f[j]=(f[j]+f[j-i])%mod;
+    int res;
+
+    cout<<f[n]<<endl;
+    
+    return 0;
+}

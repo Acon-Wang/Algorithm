@@ -1,0 +1,37 @@
+#include<iostream>
+#include<algorithm>
+const int N=1000010;
+using namespace std;
+typedef long long LL;
+int cnt,prims[N];
+int  oula[N];
+bool st[N];
+void get_oula(int n){
+    oula[1]=1;
+    for(int i=2;i<=n;i++){
+        if(!st[i]){
+            prims[cnt++]=i;
+            oula[i]=i-1;
+        }
+        for(int j=0;prims[j]<=n/i;j++){
+            int t=prims[j]*i;
+            st[t]=true;
+            if(i%prims[j]==0){
+                oula[t]=oula[i]*prims[j];
+                break;
+            }
+             oula[t]=oula[i]*(prims[j]-1);
+        }
+    }
+}
+int main (){
+    
+    int n;
+    LL res=0;
+    scanf("%d",&n);
+    get_oula(n);
+    for(int i=1;i<=n;i++) res+=oula[i];
+    cout<<res<<endl;
+    return 0;
+    
+}

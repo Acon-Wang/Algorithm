@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define N 1010
+#define INF 0x3f3f3f3f
+ 
+int G[N][N], used[N], vis[N], n;
+ 
+bool Find(int u)
+{
+    int i;
+    for(i = 1 ; i <= n ; i++)
+    {
+        if(!vis[i] && G[u][i])
+        {
+            vis[i] = 1;
+            if(!used[i] || Find(used[i]))
+            {
+                used[i] = u;
+                return true;
+            }
+        }
+    }
+    return false;
+}
+int main()
+{
+    int k, m, i, a, b, ans;
+    while(scanf("%d", &k))
+    {
+        if(k==0)
+            break;
+        ans = 0;
+        memset(G, 0, sizeof(G));
+        scanf("%d%d", &m, &n);
+        while(k--)
+        {
+            scanf("%d%d", &a, &b);
+            G[a][b] = 1;
+        }
+        memset(used, 0, sizeof(used));
+        
+        for(i = 1 ; i <= m ; i++)
+        {
+            memset(vis, 0, sizeof(vis));
+            if(Find(i))
+                ans++;
+        }
+        
+        printf("%d\n", ans);
+    }
+    return 0;
+}
